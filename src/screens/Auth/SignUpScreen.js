@@ -26,11 +26,13 @@ export default function SignUpScreen() {
   const [emailTouched, setEmailTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordValidation, setPasswordValidation] = useState(false);
-  const [passwordValidationMessage, setPasswordValidationMessage] = useState("");
+  const [passwordValidationMessage, setPasswordValidationMessage] =
+    useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [rPassword, setRPassword] = useState("");
   const [rpasswordValidation, setRPasswordValidation] = useState(false);
-  const [rpasswordValidationMessage, setRPasswordValidationMessage] = useState("");
+  const [rpasswordValidationMessage, setRPasswordValidationMessage] =
+    useState("");
   const [rpasswordTouched, setRPasswordTouched] = useState(false);
   const dispatch = useDispatch();
   const loginIsSuccess = useSelector((state) => state.user.isLoggedIn);
@@ -45,7 +47,13 @@ export default function SignUpScreen() {
     } catch (error) {
       dispatch(loginFailure(error?.message ?? "Sign up failed"));
     }
-  }, [emailValidation, passwordValidation, rpasswordValidation, email, dispatch]);
+  }, [
+    emailValidation,
+    passwordValidation,
+    rpasswordValidation,
+    email,
+    dispatch,
+  ]);
 
   useEffect(() => {
     const result = validateEmail(email);
@@ -101,7 +109,7 @@ export default function SignUpScreen() {
         value={password}
         iconName={"lock"}
         postIconPress={() => setIsHide(!isHide)}
-        postIcon={isHide ? "eye-slash" : "eye"}
+        postIcon={isHide ? "eye-off" : "eye"}
         onError={passwordTouched && !passwordValidation}
         validationMessage={passwordValidationMessage}
       />
@@ -117,7 +125,7 @@ export default function SignUpScreen() {
         value={rPassword}
         iconName={"lock"}
         postIconPress={() => setIsHide(!isHide)}
-        postIcon={isHide ? "eye-slash" : "eye"}
+        postIcon={isHide ? "eye-off" : "eye"}
         onError={rpasswordTouched && !rpasswordValidation}
         validationMessage={rpasswordValidationMessage}
       />

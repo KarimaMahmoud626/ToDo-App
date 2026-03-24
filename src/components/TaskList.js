@@ -66,10 +66,6 @@ export default function TaskList({ list, onOpenDrawer }) {
     }
   }, [list?.id, dispatch]);
 
-  useEffect(() => {
-    setIsDeleted(false);
-  }, [handleDelete]);
-
   if (!list) {
     return (
       <View style={styles.containerFull}>
@@ -117,7 +113,18 @@ export default function TaskList({ list, onOpenDrawer }) {
   return (
     <View style={styles.container}>
       {isDeleted ? (
-        <EmptyState />
+        <>
+          <View style={styles.header}>
+            <TouchableOpacity onPress={onOpenDrawer} style={styles.menuButton}>
+              <FontAwesomeFreeSolid
+                name="bars"
+                size={20}
+                color={COLORS.ON_SURFACE}
+              />
+            </TouchableOpacity>
+          </View>
+          <EmptyState />
+        </>
       ) : (
         <>
           <View style={styles.header}>
@@ -211,7 +218,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   listHeader: {
-    color: COLORS.ON_SURFACE,
+    color: COLORS.PRIMARY,
     fontSize: 26,
     fontWeight: "bold",
     paddingHorizontal: 20,
