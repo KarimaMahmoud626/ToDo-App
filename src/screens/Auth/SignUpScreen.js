@@ -39,7 +39,6 @@ export default function SignUpScreen() {
   const loginIsLoading = useSelector((state) => state.user.isLoading);
 
   const onSignUp = useCallback(() => {
-    // Fixed: also checks rpasswordValidation (previously missing)
     if (!emailValidation || !passwordValidation || !rpasswordValidation) return;
     dispatch(loginStart());
     try {
